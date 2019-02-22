@@ -14,10 +14,11 @@ data_path = data_dir / "data.csv"
 fig_path = data_dir / "plot.png"
 
 sleep_time = 60 * 5  # s
+verbose = False
 
 
 def plot_data(data, fig_path):
-    fig, axs = plt.subplots(nrows=1, ncols=3, figsize=(14, 3), constrained_layout=True)
+    fig, axs = plt.subplots(nrows=1, ncols=3, figsize=(14, 3))
     axs = list(axs.flat)
 
     axs[0].plot(data['datetime'], data['cpu'], label='cpu')
@@ -34,8 +35,9 @@ def plot_data(data, fig_path):
     axs[2].plot(data['datetime'], data['n_pids'], label='n_pids')
     axs[2].set_xlabel("Date and Time")
     axs[2].set_ylabel("Number of PIDs")
-
-    fig.savefig(fig_path, dpi=300)
+    
+    fig.tight_layout()
+    fig.savefig(str(fig_path), dpi=300)
 
 
 def bytesToMB(value):
@@ -69,5 +71,6 @@ while True:
     # Plot
     plot_data(data, fig_path)
 
-    print(".", end="")
+    if verbose:
+        print(".", end="")
     time.sleep(sleep_time)
