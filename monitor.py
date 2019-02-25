@@ -13,7 +13,7 @@ data_dir = Path("./")
 data_path = data_dir / "data.csv"
 fig_path = data_dir / "plot.png"
 
-sleep_time = 60 * 5  # s
+sleep_time = 2  #60 * 5  # s
 verbose = False
 
 
@@ -35,12 +35,12 @@ def plot_data(data, fig_path):
     axs[2].plot(data['datetime'], data['n_pids'], label='n_pids')
     axs[2].set_xlabel("Date and Time")
     axs[2].set_ylabel("Number of PIDs")
-    
+
     fig.tight_layout()
     fig.savefig(str(fig_path), dpi=300)
     fig.clear()
-    plt.clf()
-    del fig
+    plt.close(fig)
+    plt.close('all')
 
 
 def bytesToMB(value):
@@ -77,9 +77,11 @@ while True:
 
     if verbose:
         print(".", end="")
-        
+
+    print(datum['memory_used'])
+
     del datum
     del data
-        
+
     time.sleep(sleep_time)
-    
+
