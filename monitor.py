@@ -37,7 +37,7 @@ def plot_data(data, fig_path):
     axs[2].set_ylabel("Number of PIDs")
 
     fig.tight_layout()
-    fig.savefig(str(fig_path), dpi=300)
+    fig.savefig(str(fig_path), dpi=100)
     fig.clear()
     plt.close(fig)
     plt.close('all')
