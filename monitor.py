@@ -13,7 +13,7 @@ data_dir = Path("./")
 data_path = data_dir / "data.csv"
 fig_path = data_dir / "plot.png"
 
-sleep_time = 2  #60 * 5  # s
+sleep_time = 60 * 5  # s
 verbose = False
 
 
@@ -78,7 +78,7 @@ while True:
     if verbose:
         print(".", end="")
 
-    print(datum['memory_used'])
+    #print(datum['memory_used'])
 
     del datum
     del data
