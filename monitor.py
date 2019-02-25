@@ -38,6 +38,8 @@ def plot_data(data, fig_path):
     
     fig.tight_layout()
     fig.savefig(str(fig_path), dpi=300)
+    fig.clear()
+    plt.clf()
 
 
 def bytesToMB(value):
