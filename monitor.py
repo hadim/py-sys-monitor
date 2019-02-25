@@ -40,18 +40,20 @@ def plot_data(data, fig_path):
     fig.savefig(str(fig_path), dpi=300)
     fig.clear()
     plt.clf()
+    del fig
 
 
 def bytesToMB(value):
     return value / float(1<<20)
 
 
-if not data_path.exists():
-    data = pd.DataFrame()
-else:
-    data = pd.read_csv(data_path, parse_dates=['datetime'])
-
 while True:
+
+    if not data_path.exists():
+        data = pd.DataFrame()
+    else:
+        data = pd.read_csv(data_path, parse_dates=['datetime'])
+
 
     datum = {}
     datum['datetime'] = datetime.now()
@@ -75,4 +77,9 @@ while True:
 
     if verbose:
         print(".", end="")
+        
+    del datum
+    del data
+        
     time.sleep(sleep_time)
+    
